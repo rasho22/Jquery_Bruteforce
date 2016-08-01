@@ -1,9 +1,19 @@
 $(function(){
+    var password=$("password").val();
 	var txt="";
 	$.ajax({
-		url: "http://docusland.fr/code-academie/js_bruteforce/dico.txt",
-		type : 'POST',
-		type : 'GET',
+		url:
+        $.post ( "http://docusland.fr/code-academie/js_bruteforce/dico.txt",{
+            password:password}, function(data){
+            if (data == "Wrong login"){
+                $("#resultat").html(data);
+            }else {
+                alert(data);
+            }
+            }
+        });
+    });
+        /*
        dataType : 'html',
         success : function(code_html, statut){
        },
